@@ -52,8 +52,8 @@ const Home: NextPage = () => {
   }
 
   async function buyNft(nft: any) {
-    const web3modal = new Web3Modal()
-    const connection = await web3modal.connect()
+    const web3Modal = new Web3Modal()
+    const connection = await web3Modal.connect()
     const provider = new ethers.providers.Web3Provider(connection)
 
     const signer = provider.getSigner()
