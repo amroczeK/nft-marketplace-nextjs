@@ -7,7 +7,7 @@ export default function Navigation() {
       <ul>
         <h1 className="text-4xl font-bold">NFT Marketplace</h1>
 
-        <ul className="mt-4 flex">
+        <ul className="mt-4 flex text-gray-800">
           <li>
             <Link href="/">
               <a className="mr-6">Home</a>
