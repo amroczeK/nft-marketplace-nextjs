@@ -1,10 +1,13 @@
+import type { NextPage } from 'next'
 import { useState } from 'react'
 import { ethers } from 'ethers'
 import { create as ipfsHttpClient } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
 import Web3Modal from 'web3modal'
 
-const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
+const client = ipfsHttpClient({
+  url: 'https://ipfs.infura.io:5001/api/v0',
+})
 
 import { nftaddress, nftmarketaddress } from '../../config'
 
@@ -12,9 +15,9 @@ import { nftaddress, nftmarketaddress } from '../../config'
 import NFT from '../../artifacts/contracts/NFT.sol/NFT.json'
 import Market from '../../artifacts/contracts/NFTMarket.sol/NFTMarket.json'
 
-export default function CreateItem() {
+const CreateItem: NextPage = () => {
   const [uploading, setUploading] = useState(false)
-  const [fileUrl, setFileUrl] = useState(null)
+  const [fileUrl, setFileUrl] = useState<string | null>(null)
   const [formInput, updateFormInput] = useState({
     price: '',
     name: '',
@@ -23,7 +26,7 @@ export default function CreateItem() {
 
   const router = useRouter()
 
-  const onChange = async (e) => {
+  const onChange = async (e: any) => {
     const file = e.target.files[0]
     try {
       setUploading(true)
@@ -58,7 +61,7 @@ export default function CreateItem() {
     }
   }
 
-  const createSale = async (url) => {
+  const createSale = async (url: string) => {
     const web3Modal = new Web3Modal()
     const connection = await web3Modal.connect()
     const provider = new ethers.providers.Web3Provider(connection)
@@ -123,3 +126,5 @@ export default function CreateItem() {
     </div>
   )
 }
+
+export default CreateItem;
