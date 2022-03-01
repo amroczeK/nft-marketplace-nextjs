@@ -14,7 +14,7 @@ import Market from '../artifacts/contracts/NFTMarket.sol/NFTMarket.json'
 
 const Home: NextPage = () => {
   const [nfts, setNfts] = useState<any[]>([])
-  const [loadingState, setLoadingState] = useState(true)
+  const [loadingState, setLoadingState] = useState<Boolean>(true)
 
   useEffect(() => {
     loadNFTs()
