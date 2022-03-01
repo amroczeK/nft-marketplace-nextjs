@@ -15,6 +15,7 @@ npx hardhat help
 ```
 
 ### Deploy locally and run local node
+#### First time deployment run hardhat node and attach account to your wallet and switch network to localhost
 ```
 npx hardhat node
 
@@ -31,6 +32,7 @@ Account #0: 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 (10000 ETH)
 Private Key: 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
 ```
 
+#### Once account setup and configured in config.js deploy the network
 ```
 npx hardhat run scripts/deploy.js --network localhost
 
