@@ -1,18 +1,5 @@
-# Basic Sample Hardhat Project
-
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
-
-Try running some of the following tasks:
-
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-```
+# NFT Marketplace with Polygon, Next.js, Typescript, Tailwind, Solidity, Hardhat, Ethers.js and IPFS
+## Web application framework - Next.js Solidity development environment - Hardhat File Storage - IPFS Ethereum Web Client Library - Ethers.js
 
 ### Deploy locally and run local node
 #### First time deployment run hardhat node and attach account to your wallet and switch network to localhost
@@ -39,6 +26,11 @@ npx hardhat run scripts/deploy.js --network localhost
 Output:
 nftMarket deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 nft deployed to: 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+```
+
+#### Once the network is deployed successfully run the application
+```
+npm run dev
 ```
 
 ### Test output example
