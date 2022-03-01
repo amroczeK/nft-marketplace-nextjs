@@ -32,7 +32,7 @@ Account #0: 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 (10000 ETH)
 Private Key: 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
 ```
 
-#### Once account setup and configured in config.js deploy the network
+#### Once account setup and configured in config.js and hardhat node running, deploy the network
 ```
 npx hardhat run scripts/deploy.js --network localhost
 

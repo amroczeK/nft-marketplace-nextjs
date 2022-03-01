@@ -9,6 +9,7 @@ import { nftaddress, nftmarketaddress } from '../../config'
 // JSON representation of smart contract ref from artifacts
 import NFT from '../../artifacts/contracts/NFT.sol/NFT.json'
 import Market from '../../artifacts/contracts/NFTMarket.sol/NFTMarket.json'
+import NftCard from '../../components/NftCard'
 
 const Dashboard: NextPage = () => {
   const [nfts, setNfts] = useState<any[]>([])
@@ -45,6 +46,7 @@ const Dashboard: NextPage = () => {
           tokenId: i.tokenId.toNumber(),
           seller: i.seller,
           owner: i.owner,
+          sold: i.sold,
           image: meta.data.image,
           name: meta.data.name,
           description: meta.data.description,
@@ -54,6 +56,7 @@ const Dashboard: NextPage = () => {
     )
 
     const soldItems = items.filter((i) => i.sold)
+    console.log('here', soldItems)
 
     setSold(soldItems)
     setNfts(items)
@@ -61,74 +64,29 @@ const Dashboard: NextPage = () => {
   }
 
   if (!loadingState && !nfts.length)
-    return <h2 className="px-20 py-10 text-3xl">No assets owned</h2>
+    return <h2 className="px-20 py-10 text-3xl">No created assets</h2>
 
   return (
-    <div className="flex justify-center">
-      <div className="container mx-auto max-w-7xl px-4">
-        <div className="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-2 lg:grid-cols-4">
-          {nfts.map((nft, i) => (
-            <div
-              key={i}
-              className="overflow-hidden rounded-xl border shadow hover:scale-105"
-            >
-              <img src={nft.image} alt={nft.name} />
-              <div className="p-4">
-                <h3 className="h-[64px] text-2xl font-semibold">{nft.name}</h3>
-                <div className="h-[70px] overflow-hidden">
-                  <p>{nft.description}</p>
-                </div>
-              </div>
-              <div className="bg-gray-800 p-4">
-                <p className="mb-4 text-2xl font-bold text-white">
-                  {nft.price} Matic
-                </p>
-                {/* <button
-                  className="w-full rounded bg-gray-700 py-2 px-12 font-bold text-white"
-                  onClick={() => buyNft(nft)}
-                >
-                  Buy
-                </button> */}
-              </div>
-            </div>
-          ))}
+    <div className="flex flex-col justify-center">
+      <div className="asset-container flex flex-col gap-6">
+        <div>
+          <h2 className="pb-4 text-2xl">Created Assets</h2>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {nfts.map((nft, i) => (
+              <NftCard index={i} nft={nft} />
+            ))}
+          </div>
         </div>
-        <div className="px-4">
-          {Boolean(sold.length) && (
-            <div className="container mx-auto max-w-7xl px-4">
-              <h2 className="py-2 text-2xl">Items Sold</h2>
-              <div className="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-2 lg:grid-cols-4">
-                {sold.map((nft, i) => (
-                  <div
-                    key={i}
-                    className="overflow-hidden rounded-xl border shadow hover:scale-105"
-                  >
-                    <img src={nft.image} alt={nft.name} />
-                    <div className="p-4">
-                      <h3 className="h-[64px] text-2xl font-semibold">
-                        {nft.name}
-                      </h3>
-                      <div className="h-[70px] overflow-hidden">
-                        <p>{nft.description}</p>
-                      </div>
-                    </div>
-                    <div className="bg-gray-800 p-4">
-                      <p className="mb-4 text-2xl font-bold text-white">
-                        {nft.price} Matic
-                      </p>
-                      {/* <button
-                  className="w-full rounded bg-gray-700 py-2 px-12 font-bold text-white"
-                  onClick={() => buyNft(nft)}
-                >
-                  Buy
-                </button> */}
-                    </div>
-                  </div>
-                ))}
-              </div>
+        {Boolean(sold.length) && (
+          <div className="border-t-2">
+            <h2 className="py-4 mt-4 text-2xl">Items Sold</h2>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {sold.map((nft, i) => (
+                <NftCard index={i} nft={nft} />
+              ))}
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   )
