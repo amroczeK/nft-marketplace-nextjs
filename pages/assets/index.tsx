@@ -20,7 +20,6 @@ const Assets: NextPage = () => {
   }, [])
 
   async function loadNFTs() {
-    console.log('HERE)')
     try {
       const web3Modal = new Web3Modal()
       const connection = await web3Modal.connect()
@@ -61,7 +60,6 @@ const Assets: NextPage = () => {
     }
   }
 
-  console.log(loadingState, nfts.length)
   if (!loadingState && !nfts.length)
     return <h2 className="px-20 py-10 text-3xl">No assets owned</h2>
 

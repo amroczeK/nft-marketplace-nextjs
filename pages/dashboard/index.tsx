@@ -56,7 +56,6 @@ const Dashboard: NextPage = () => {
     )
 
     const soldItems = items.filter((i) => i.sold)
-    console.log('here', soldItems)
 
     setSold(soldItems)
     setNfts(items)
